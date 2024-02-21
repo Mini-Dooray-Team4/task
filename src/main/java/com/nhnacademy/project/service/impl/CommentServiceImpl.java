@@ -5,7 +5,6 @@ import com.nhnacademy.project.service.CommentService;
 import entity.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
