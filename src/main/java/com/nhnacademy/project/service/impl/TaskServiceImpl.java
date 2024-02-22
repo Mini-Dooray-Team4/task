@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.TaskRepository;
 import com.nhnacademy.project.service.TaskService;
-import entity.Task;
+import com.nhnacademy.project.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateTask(Task task) {
-        if (repository.existsById(task.getId())) {
+        if (repository.existsById(task.getTaskId())) {
             repository.save(task);
         }
     }

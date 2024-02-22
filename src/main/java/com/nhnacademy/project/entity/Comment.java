@@ -1,5 +1,4 @@
-package entity;
-
+package com.nhnacademy.project.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +14,10 @@ import javax.persistence.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private Integer commentId;
 
+    @Column(name = "user_id")
     private String userId;
 
     @ManyToOne
@@ -28,4 +29,5 @@ public class Comment {
     private Task task;
 
     private String content;
+
 }

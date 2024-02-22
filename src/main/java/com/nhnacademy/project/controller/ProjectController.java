@@ -2,7 +2,7 @@ package com.nhnacademy.project.controller;
 
 
 import com.nhnacademy.project.service.ProjectService;
-import entity.Project;
+import com.nhnacademy.project.entity.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.MilestoneRepository;
 import com.nhnacademy.project.service.MilestoneService;
-import entity.Milestone;
+import com.nhnacademy.project.entity.MileStone;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +14,17 @@ public class MilestoneServiceImpl implements MilestoneService {
     private final MilestoneRepository repository;
 
     @Override
-    public List<Milestone> getAllMilestones() {
+    public List<MileStone> getAllMilestones() {
         return repository.findAll();
     }
 
     @Override
-    public Milestone getMilestone(Integer milestoneId) {
+    public MileStone getMilestone(Integer milestoneId) {
         return repository.findById(milestoneId).orElse(null);
     }
 
     @Override
-    public void createMilestone(Milestone milestone) {
+    public void createMilestone(MileStone milestone) {
         repository.save(milestone);
     }
 
@@ -34,8 +34,8 @@ public class MilestoneServiceImpl implements MilestoneService {
     }
 
     @Override
-    public void updateMilestone(Milestone milestone) {
-        if (repository.existsById(milestone.getId())) {
+    public void updateMilestone(MileStone milestone) {
+        if (repository.existsById(milestone.getMileStoneId())) {
             repository.save(milestone);
         }
     }

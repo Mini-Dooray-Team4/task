@@ -1,6 +1,6 @@
 package com.nhnacademy.project.service;
 
-import entity.Tag;
+import com.nhnacademy.project.entity.Tag;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.ProjectRepository;
 import com.nhnacademy.project.service.ProjectService;
-import entity.Project;
+import com.nhnacademy.project.entity.Project;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +36,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public void updateProject(Project project) {
-        if (repository.existsById(project.getId())) {
+        if (repository.existsById(project.getProjectId())) {
             repository.save(project);
         }
     }

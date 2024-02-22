@@ -1,6 +1,6 @@
 package com.nhnacademy.project.service;
 
-import entity.Comment;
+import com.nhnacademy.project.entity.Comment;
 
 import java.util.List;
 

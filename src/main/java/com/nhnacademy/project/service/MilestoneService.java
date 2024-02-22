@@ -1,14 +1,14 @@
 package com.nhnacademy.project.service;
 
-import entity.Milestone;
+import com.nhnacademy.project.entity.MileStone;
 
 import java.util.List;
 
 public interface MilestoneService {
-    List<Milestone> getAllMilestones();
-    Milestone getMilestone(Integer milestoneId);
-    void createMilestone(Milestone milestone);
+    List<MileStone> getAllMilestones();
+    MileStone getMilestone(Integer milestoneId);
+    void createMilestone(MileStone milestone);
     void deleteMilestone(Integer milestoneId);
 
-    void updateMilestone(Milestone milestone);
+    void updateMilestone(MileStone milestone);
 }

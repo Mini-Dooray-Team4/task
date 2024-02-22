@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.TagRepository;
 import com.nhnacademy.project.service.TagService;
-import entity.Tag;
+import com.nhnacademy.project.entity.Tag;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void updateTag(Tag tag) {
-        if (repository.existsById(tag.getId())) {
+        if (repository.existsById(tag.getTagId())) {
             repository.save(tag);
         }
     }

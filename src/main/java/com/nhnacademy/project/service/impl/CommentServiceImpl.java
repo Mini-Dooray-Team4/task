@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.CommentRepository;
 import com.nhnacademy.project.service.CommentService;
-import entity.Comment;
+import com.nhnacademy.project.entity.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void updateComment(Comment comment) {
-        if (repository.existsById(comment.getId())) {
+        if (repository.existsById(comment.getCommentId())) {
             repository.save(comment);
         }
     }

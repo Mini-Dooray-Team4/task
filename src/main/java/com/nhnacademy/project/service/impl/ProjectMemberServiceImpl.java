@@ -2,7 +2,7 @@ package com.nhnacademy.project.service.impl;
 
 import com.nhnacademy.project.repository.ProjectMemberRepository;
 import com.nhnacademy.project.service.ProjectMemberService;
-import entity.ProjectMember;
+import com.nhnacademy.project.entity.ProjectMember;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     }
 
     @Override
-    public ProjectMember getProjectMember(Integer projectMemberId) {
-        return repository.findById(projectMemberId).orElse(null);
+    public ProjectMember getProjectMember(ProjectMember.Pk pk) {
+        return repository.findById(pk).orElse(null);
     }
 
     @Override
@@ -30,13 +30,13 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     }
 
     @Override
-    public void deleteProjectMember(Integer projectMemberId) {
-        repository.deleteById(projectMemberId);
+    public void deleteProjectMember(ProjectMember.Pk pk) {
+        repository.deleteById(pk);
     }
 
     @Override
     public void updateProjectMember(ProjectMember projectMember) {
-        if (repository.existsById(projectMember.getId())) {
+        if (repository.existsById(projectMember.getPk())) {
             repository.save(projectMember);
         }
     }

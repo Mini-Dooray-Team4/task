@@ -1,7 +1,7 @@
 package com.nhnacademy.project.service;
 
 
-import entity.Task;
+import com.nhnacademy.project.entity.Task;
 
 import java.util.List;
 

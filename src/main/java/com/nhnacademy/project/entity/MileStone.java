@@ -1,4 +1,4 @@
-package entity;
+package com.nhnacademy.project.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Table(name = "milestone")
-public class Milestone {
+public class MileStone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "milestone_id")

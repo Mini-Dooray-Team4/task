@@ -1,7 +1,7 @@
 package com.nhnacademy.project.repository;
 
-import entity.Milestone;
+import com.nhnacademy.project.entity.MileStone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MilestoneRepository extends JpaRepository<Milestone, Integer> {
+public interface MilestoneRepository extends JpaRepository<MileStone, Integer> {
 }

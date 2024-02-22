@@ -1,7 +1,6 @@
 package com.nhnacademy.project.service;
 
-import com.nhnacademy.project.repository.ProjectRepository;
-import entity.Project;
+import com.nhnacademy.project.entity.Project;
 
 import java.util.List;
 

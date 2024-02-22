@@ -1,7 +1,7 @@
 package com.nhnacademy.project.controller;
 
 import com.nhnacademy.project.service.TaskService;
-import entity.Task;
+import com.nhnacademy.project.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

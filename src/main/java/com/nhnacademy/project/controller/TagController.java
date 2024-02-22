@@ -1,7 +1,7 @@
 package com.nhnacademy.project.controller;
 
 import com.nhnacademy.project.service.TagService;
-import entity.Tag;
+import com.nhnacademy.project.entity.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
