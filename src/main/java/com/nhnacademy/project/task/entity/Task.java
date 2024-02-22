@@ -16,6 +16,15 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "tasks")
 public class Task {
+
+    public Task(Project project, String userId, String taskTitle, String taskContent, LocalDate createAt) {
+        this.project = project;
+        this.userId = userId;
+        this.taskTitle = taskTitle;
+        this.taskContent = taskContent;
+        this.createAt = createAt;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer taskId;
@@ -35,4 +44,7 @@ public class Task {
 
     @Column(name = "create_at")
     private LocalDate createAt;
+
+
+
 }
