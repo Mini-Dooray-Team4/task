@@ -1,0 +1,10 @@
+POST http://localhost:8888/project
+Content-Type: application/json
+
+{
+  "userId": "유저5",
+  "projectName": "DTO테스트",
+  "projectState": "활동"
+}
+
+###

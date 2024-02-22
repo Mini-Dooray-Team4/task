@@ -5,6 +5,7 @@ import com.nhnacademy.project.task.repository.ProjectRepository;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void createProject(Project project) {
+    public void createProject(ProjectDto projectDto) {
+        Project project = new Project();
+        BeanUtils.copyProperties(projectDto, project);
+        project.setProjectId(null);
         repository.save(project);
     }
 
