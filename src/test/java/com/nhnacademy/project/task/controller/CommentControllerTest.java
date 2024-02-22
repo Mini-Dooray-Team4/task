@@ -68,7 +68,7 @@ class CommentControllerTest {
     @Test
     void createComment() throws Exception {
         Project project = new Project("3", "project", "진행중");
-        Task task = new Task(project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
+        Task task = new Task(1,project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
         Comment comment = new Comment(10, "userId", project, task, "content", LocalDateTime.now());
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -88,7 +88,7 @@ class CommentControllerTest {
     @Test
     void updateComment() throws Exception {
         Project project = new Project("3", "project", "진행중");
-        Task task = new Task(project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
+        Task task = new Task(1,project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
         Comment comment = new Comment(10, "userId", project, task, "updateComment", LocalDateTime.now());
 
         ObjectMapper objectMapper = new ObjectMapper();
