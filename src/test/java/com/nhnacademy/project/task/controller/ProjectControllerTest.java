@@ -1,4 +1,4 @@
-package com.nhnacademy.project.controller;
+package com.nhnacademy.project.task.controller;
 
 import com.nhnacademy.project.entity.Project;
 import com.nhnacademy.project.repository.ProjectRepository;
