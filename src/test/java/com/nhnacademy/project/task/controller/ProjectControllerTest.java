@@ -1,8 +1,8 @@
 package com.nhnacademy.project.task.controller;
 
-import com.nhnacademy.project.entity.Project;
-import com.nhnacademy.project.repository.ProjectRepository;
 import com.nhnacademy.project.task.TaskApplication;
+import com.nhnacademy.project.task.entity.Project;
+import com.nhnacademy.project.task.repository.ProjectRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,7 +15,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
