@@ -65,13 +65,13 @@ class TaskControllerTest {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
 
-        given(repository.save(any(Task.class))).willReturn(new Task(1, project, "jjunho50", "taskTitle", "jjunho50", LocalDateTime.now()));
+        given(repository.save(any(Task.class)))
+                .willReturn(new Task(1, project, "jjunho50", "taskTitle", "jjunho50", LocalDateTime.now()));
 
         mockMvc.perform(
-                        post("/task")
-                                .content(objectMapper.writeValueAsString(task))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
+                post("/task")
+                        .content(objectMapper.writeValueAsString(task))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -85,10 +85,9 @@ class TaskControllerTest {
         String updatedProjectJson = objectMapper.writeValueAsString(task);
 
         mockMvc.perform(
-                        put("/task/{taskId}", 1)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(updatedProjectJson)
-                )
+                put("/task/{taskId}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updatedProjectJson))
                 .andExpect(status().isOk());
     }
 
@@ -96,8 +95,7 @@ class TaskControllerTest {
     void deleteComment() throws Exception {
         mockMvc.perform(
                 delete("/task/{taskId}", 1)
-                        .contentType(MediaType.APPLICATION_JSON)
-                )
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }

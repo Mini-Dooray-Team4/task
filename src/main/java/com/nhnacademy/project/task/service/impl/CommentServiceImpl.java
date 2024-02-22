@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.service.impl;
 
+import com.nhnacademy.project.task.domain.CommentDto;
 import com.nhnacademy.project.task.repository.CommentRepository;
 import com.nhnacademy.project.task.service.CommentService;
 import com.nhnacademy.project.task.entity.Comment;
@@ -13,13 +14,13 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository repository;
 
     @Override
-    public List<Comment> getAllComments() {
-        return repository.findAll();
+    public List<CommentDto> getAllComments() {
+        return repository.getAllBy();
     }
 
     @Override
-    public Comment getComment(Integer commentId) {
-        return repository.findById(commentId).orElse(null);
+    public CommentDto getComment(Integer commentId) {
+        return repository.getByCommentId(commentId);
     }
 
     @Override

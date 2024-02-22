@@ -2,6 +2,7 @@ package com.nhnacademy.project.task.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.project.task.TaskApplication;
+import com.nhnacademy.project.task.domain.ProjectDto;
 import com.nhnacademy.project.task.entity.Project;
 import com.nhnacademy.project.task.service.ProjectService;
 import org.junit.jupiter.api.Test;
@@ -34,38 +35,35 @@ class ProjectControllerTest {
     void projectRepository() throws Exception {
 
         given(projectService.getAllProjects())
-                .willReturn(List.of(new Project("1", "testProject", "test상태")));
+                .willReturn(List.of(new ProjectDto(12, "test1")));
 
         mockMvc.perform(get("/project"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$[0].projectName", equalTo("testProject"))
-                );
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].projectName", equalTo("test1")));
     }
 
     @Test
-    void getProject() throws Exception{
-        given(projectService.getProject(2))
-                .willReturn(new Project("2", "testProject", "test상태"));
+    void getProject() throws Exception {
+        given(projectService.getProjectByProjectId(2))
+                .willReturn(new ProjectDto(2, "test2"));
 
         mockMvc.perform(get("/project/2"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.projectState", equalTo("test상태"))
-                );
+                .andExpect(MockMvcResultMatchers.jsonPath("$.projectName", equalTo("test2")));
     }
 
     @Test
-    void createProject() throws Exception{
+    void createProject() throws Exception {
 
         Project project = new Project("3", "project", "진행중");
         ObjectMapper objectMapper = new ObjectMapper();
 
         mockMvc.perform(
-                        post("/project")
-                                .content(objectMapper.writeValueAsString(project))
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
+                post("/project")
+                        .content(objectMapper.writeValueAsString(project))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
@@ -76,10 +74,9 @@ class ProjectControllerTest {
         String updatedProjectJson = objectMapper.writeValueAsString(updatedProject);
 
         mockMvc.perform(
-                        put("/project/{projectId}", 1)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(updatedProjectJson)
-                )
+                put("/project/{projectId}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updatedProjectJson))
                 .andExpect(status().isOk());
 
     }
@@ -87,9 +84,8 @@ class ProjectControllerTest {
     @Test
     void deleteProject() throws Exception {
         mockMvc.perform(
-                        delete("/project/{projectId}", 1)
-                                .contentType(MediaType.APPLICATION_JSON)
-                )
+                delete("/project/{projectId}", 1)
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
     }
