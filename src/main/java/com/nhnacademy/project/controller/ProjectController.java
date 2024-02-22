@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectController {
     private final ProjectService service;
-    @GetMapping()
+    @GetMapping
     public List<Project> getAllProjects()
     {
         return service.getAllProjects();
@@ -23,7 +23,7 @@ public class ProjectController {
         return service.getProject(projectId);
     }
 
-    @PostMapping()
+    @PostMapping
     public void createProject(@RequestBody Project project) {
         service.createProject(project);
     }

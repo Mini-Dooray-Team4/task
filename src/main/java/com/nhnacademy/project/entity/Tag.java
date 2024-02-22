@@ -1,6 +1,7 @@
 package com.nhnacademy.project.entity;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tags")
 public class Tag {
     @Id

@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "task_tags")
 public class TaskTag {
 
