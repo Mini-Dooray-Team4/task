@@ -1,4 +1,4 @@
-package com.nhnacademy.project.service.impl;
+package com.nhnacademy.project.task.impl;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
