@@ -1,8 +1,10 @@
 package com.nhnacademy.project.task.controller;
 
+import com.nhnacademy.project.task.entity.TaskDto;
 import com.nhnacademy.project.task.service.TaskService;
 import com.nhnacademy.project.task.entity.Task;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -13,13 +15,13 @@ public class TaskController {
     private final TaskService service;
 
     @GetMapping()
-    public List<Task> getAllTasks() {
-        return service.getAllTasks();
+    public ResponseEntity<List<TaskDto>> getAllTasks() {
+        return ResponseEntity.ok().body(service.getAllTasks());
     }
 
     @GetMapping("/{taskId}")
-    public Task getTask(@PathVariable Integer taskId) {
-        return service.getTask(taskId);
+    public ResponseEntity<Task> getTask(@PathVariable Integer taskId) {
+        return ResponseEntity.ok().body(service.getTask(taskId));
     }
 
     @PostMapping()
@@ -29,7 +31,6 @@ public class TaskController {
 
     @PutMapping("/{taskId}")
     public void updateTask(@RequestBody Task task) {
-
         service.updateTask(task);
     }
 

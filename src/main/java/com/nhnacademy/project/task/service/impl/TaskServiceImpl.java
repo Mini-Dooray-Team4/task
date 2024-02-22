@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.service.impl;
 
+import com.nhnacademy.project.task.entity.TaskDto;
 import com.nhnacademy.project.task.repository.TaskRepository;
 import com.nhnacademy.project.task.service.TaskService;
 import com.nhnacademy.project.task.entity.Task;
@@ -15,8 +16,8 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
 
     @Override
-    public List<Task> getAllTasks() {
-        return repository.findAll();
+    public List<TaskDto> getAllTasks() {
+        return repository.findAllBy();
     }
 
     @Override

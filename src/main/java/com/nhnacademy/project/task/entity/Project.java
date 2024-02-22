@@ -18,7 +18,7 @@ public class Project {
     private Integer projectId;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private String userId;
 
     @Column(name = "project_name")
     private String projectName;
@@ -26,7 +26,7 @@ public class Project {
     @Column(name = "project_state")
     private String projectState;
 
-    public Project(Integer userId, String projectName, String projectState) {
+    public Project(String userId, String projectName, String projectState) {
         this.userId = userId;
         this.projectName = projectName;
         this.projectState = projectState;

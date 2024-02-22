@@ -10,13 +10,11 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tasks")
 public class Task {
-
     public Task(Project project, String userId, String taskTitle, String taskContent, LocalDate createAt) {
         this.project = project;
         this.userId = userId;
