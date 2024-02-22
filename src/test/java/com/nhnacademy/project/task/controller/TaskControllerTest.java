@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import javax.persistence.AssociationOverride;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +37,7 @@ class TaskControllerTest {
         Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
-        Task testTag = new Task(project, "aa", "taskTitle", "taskContent", LocalDate.now());
+        Task testTag = new Task(project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
         entityManager.persist(testTag);
 
         List<Task> tasks = taskService.getAllTasks();
@@ -49,7 +50,7 @@ class TaskControllerTest {
         Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
-        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
+        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDateTime.now());
         entityManager.persist(task);
 
         Task actual = taskService.getTask(task.getTaskId());
@@ -63,7 +64,7 @@ class TaskControllerTest {
         Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
-        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
+        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDateTime.now());
 
         taskService.createTask(task);
 
@@ -75,7 +76,7 @@ class TaskControllerTest {
         Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
-        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
+        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDateTime.now());
         entityManager.persist(task);
 
         task.setTaskTitle("Updated Title");

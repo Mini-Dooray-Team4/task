@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -17,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "tasks")
 public class Task {
 
-    public Task(Project project, String userId, String taskTitle, String taskContent, LocalDate createAt) {
+    public Task(Project project, String userId, String taskTitle, String taskContent, LocalDateTime createAt) {
         this.project = project;
         this.userId = userId;
         this.taskTitle = taskTitle;
@@ -43,7 +44,7 @@ public class Task {
     private String taskContent;
 
     @Column(name = "create_at")
-    private LocalDate createAt;
+    private LocalDateTime createAt;
 
 
 
