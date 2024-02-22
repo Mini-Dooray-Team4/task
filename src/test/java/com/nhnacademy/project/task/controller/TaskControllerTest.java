@@ -1,81 +1,103 @@
 package com.nhnacademy.project.task.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.nhnacademy.project.task.domain.TaskDto;
 import com.nhnacademy.project.task.entity.Project;
 import com.nhnacademy.project.task.entity.Task;
-import com.nhnacademy.project.task.entity.TaskDto;
-import com.nhnacademy.project.task.service.TaskService;
+import com.nhnacademy.project.task.repository.TaskRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @Transactional
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureMockMvc
 class TaskControllerTest {
 
-
     @Autowired
-    private TaskService taskService;
+    MockMvc mockMvc;
+
+    @MockBean
+    private TaskRepository repository;
 
     @Test
-    void getAllTasks() {
-        TaskDto testTag = new TaskDto(1, "taskTitle", "100");
-        List<TaskDto> tasks = taskService.getAllTasks();
-        assertThat(tasks).contains(testTag);
+    void getAllTasks() throws Exception {
+        given(repository.findAllBy()).willReturn(List.of(new TaskDto(1, "taskTitle", "jjunho50")));
+
+        mockMvc.perform(get("/task"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$[0].taskTitle", equalTo("taskTitle")));
     }
 
-//    @Test
-//    void getTask() {
-//        Project project = new Project("100", "testProject", "진행중");
-//        entityManager.persist(project);
-//
-//        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
-//        entityManager.persist(task);
-//
-//        Task actual = taskService.getTask(task.getTaskId());
-//
-//        assertNotNull(actual);
-//        assertEquals(task.getTaskId(), actual.getTaskId());
-//    }
-//
-//    @Test
-//    void createTask() {
-//        Project project = new Project("100", "testProject", "진행중");
-//        entityManager.persist(project);
-//
-//        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
-//
-//        taskService.createTask(task);
-//
-//        assertNotNull(task.getTaskId());
-//    }
-//
-//    @Test
-//    void updateTask() {
-//        Project project = new Project("100", "testProject", "진행중");
-//        entityManager.persist(project);
-//
-//        Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
-//        entityManager.persist(task);
-//
-//        task.setTaskTitle("Updated Title");
-//        taskService.updateTask(task);
-//
-//        Task updatedTask = entityManager.find(Task.class, task.getTaskId());
-//        assertEquals("Updated Title", updatedTask.getTaskTitle());
-//    }
-//
-//    @Test
-//    void deleteTask() {
-//    }
+    @Test
+    void findByTaskId() throws Exception {
+        given(repository.findByTaskId(1)).willReturn(Optional.of(new TaskDto(1, "taskTitle", "jjunho50")));
+
+        mockMvc.perform(get("/task/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.taskTitle", equalTo("taskTitle")))
+                .andExpect(jsonPath("$.userId", equalTo("jjunho50")));
+    }
+
+    @Test
+    void createTask() throws Exception {
+        Project project = new Project("jjunho50", "name", "state");
+        Task task = new Task(1, project, "jjunho50", "title", "content", LocalDateTime.now());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        given(repository.save(any(Task.class))).willReturn(new Task(1, project, "jjunho50", "taskTitle", "jjunho50", LocalDateTime.now()));
+
+        mockMvc.perform(
+                        post("/task")
+                                .content(objectMapper.writeValueAsString(task))
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void updateComment() throws Exception {
+        Project project = new Project("jjunho50", "name", "state");
+        Task task = new Task(1, project, "jjunho50", "title", "content", LocalDateTime.now());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        String updatedProjectJson = objectMapper.writeValueAsString(task);
+
+        mockMvc.perform(
+                        put("/task/{taskId}", 1)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(updatedProjectJson)
+                )
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void deleteComment() throws Exception {
+        mockMvc.perform(
+                delete("/task/{taskId}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+    }
 }

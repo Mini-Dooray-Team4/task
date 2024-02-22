@@ -1,13 +1,14 @@
 package com.nhnacademy.project.task.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -15,13 +16,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "tasks")
 public class Task {
-    public Task(Project project, String userId, String taskTitle, String taskContent, LocalDate createAt) {
-        this.project = project;
-        this.userId = userId;
-        this.taskTitle = taskTitle;
-        this.taskContent = taskContent;
-        this.createAt = createAt;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,8 +35,6 @@ public class Task {
     private String taskContent;
 
     @Column(name = "create_at")
-    private LocalDate createAt;
-
-
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createAt;
 }

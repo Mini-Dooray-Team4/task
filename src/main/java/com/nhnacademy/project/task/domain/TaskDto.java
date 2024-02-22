@@ -1,4 +1,4 @@
-package com.nhnacademy.project.task.entity;
+package com.nhnacademy.project.task.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.nhnacademy.project.task.controller;
 
-import com.nhnacademy.project.task.entity.TaskDto;
+import com.nhnacademy.project.task.domain.TaskDto;
 import com.nhnacademy.project.task.service.TaskService;
 import com.nhnacademy.project.task.entity.Task;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +20,12 @@ public class TaskController {
     }
 
     @GetMapping("/{taskId}")
-    public ResponseEntity<Task> getTask(@PathVariable Integer taskId) {
+    public ResponseEntity<TaskDto> getTask(@PathVariable Integer taskId) {
         return ResponseEntity.ok().body(service.getTask(taskId));
     }
 
     @PostMapping()
-    public void createTask( @RequestBody Task task) {
+    public void createTask(@RequestBody Task task) {
         service.createTask(task);
     }
 
