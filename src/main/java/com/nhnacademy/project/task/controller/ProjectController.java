@@ -5,6 +5,7 @@ import com.nhnacademy.project.task.domain.ProjectDto;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,28 +15,34 @@ import java.util.List;
 public class ProjectController {
     private final ProjectService service;
     @GetMapping
-    public List<ProjectDto> getAllProjects()
-    {
-        return service.getAllProjects();
+    public ResponseEntity<List<ProjectDto>> getAllProjects() {
+        return ResponseEntity
+            .ok()
+            .body(service.getAllProjects());
     }
 
     @GetMapping("/{projectId}")
-    public ProjectDto getProject(@PathVariable Integer projectId) {
-        return service.getProjectByProjectId(projectId);
+    public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
+        return ResponseEntity
+                .ok()
+                .body(service.getProjectByProjectId(projectId));
     }
 
     @PostMapping
-    public void createProject(@RequestBody Project project) {
+    public ResponseEntity<Void> createProject(@RequestBody Project project) {
         service.createProject(project);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{projectId}")
-    public void updateProject(@RequestBody Project project) {
+    public ResponseEntity<Void> updateProject(@RequestBody Project project) {
         service.updateProject(project);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{projectId}")
-    public void deleteProject(@PathVariable Integer projectId) {
+    public ResponseEntity<Void> deleteProject(@PathVariable Integer projectId) {
         service.deleteProject(projectId);
+        return ResponseEntity.ok().build();
     }
 }
