@@ -1,9 +1,7 @@
 package com.nhnacademy.project.task.entity;
 
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "projects")
 public class Project {
     @Id
@@ -27,4 +26,9 @@ public class Project {
     @Column(name = "project_state")
     private String projectState;
 
+    public Project(Integer userId, String projectName, String projectState) {
+        this.userId = userId;
+        this.projectName = projectName;
+        this.projectState = projectState;
+    }
 }
