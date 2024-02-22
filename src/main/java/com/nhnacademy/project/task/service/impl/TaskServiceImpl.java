@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-@Service
+@Service("taskService")
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
