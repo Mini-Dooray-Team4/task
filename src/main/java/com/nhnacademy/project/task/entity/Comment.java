@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -31,5 +32,7 @@ public class Comment {
     private Task task;
 
     private String content;
+
+    private LocalDate createAt;
 
 }

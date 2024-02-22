@@ -33,7 +33,7 @@ class TaskControllerTest {
     @Test
     void getAllTasks() {
 
-        Project project = new Project(100, "testProject", "진행중");
+        Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
         Task testTag = new Task(project, "aa", "taskTitle", "taskContent", LocalDate.now());
@@ -46,7 +46,7 @@ class TaskControllerTest {
 
     @Test
     void getTask() {
-        Project project = new Project(100, "testProject", "진행중");
+        Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
         Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
@@ -60,7 +60,7 @@ class TaskControllerTest {
 
     @Test
     void createTask() {
-        Project project = new Project(100, "testProject", "진행중");
+        Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
         Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());
@@ -72,7 +72,7 @@ class TaskControllerTest {
 
     @Test
     void updateTask() {
-        Project project = new Project(100, "testProject", "진행중");
+        Project project = new Project("100", "testProject", "진행중");
         entityManager.persist(project);
 
         Task task = new Task(project, "taskName", "taskTitle", "taskContent", LocalDate.now());

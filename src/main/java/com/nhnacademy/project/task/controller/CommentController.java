@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.controller;
 
+import com.nhnacademy.project.task.domain.CommentDto;
 import com.nhnacademy.project.task.entity.Comment;
 import org.springframework.web.bind.annotation.*;
 import com.nhnacademy.project.task.service.CommentService;
@@ -15,13 +16,12 @@ public class CommentController {
     private final CommentService service;
 
     @GetMapping
-    public List<Comment> getAllComments()
-    {
+    public List<CommentDto> getAllComments() {
         return service.getAllComments();
     }
 
     @GetMapping("/{commentId}")
-    public Comment getComment(@PathVariable Integer commentId) {
+    public CommentDto getComment(@PathVariable Integer commentId) {
         return service.getComment(commentId);
     }
 

@@ -1,10 +1,10 @@
 package com.nhnacademy.project.task.controller;
 
 
+import com.nhnacademy.project.task.domain.ProjectDto;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
 public class ProjectController {
     private final ProjectService service;
     @GetMapping
-    public List<Project> getAllProjects()
+    public List<ProjectDto> getAllProjects()
     {
         return service.getAllProjects();
     }
 
     @GetMapping("/{projectId}")
-    public Project getProject(@PathVariable Integer projectId) {
-        return service.getProject(projectId);
+    public ProjectDto getProject(@PathVariable Integer projectId) {
+        return service.getProjectByProjectId(projectId);
     }
 
     @PostMapping
