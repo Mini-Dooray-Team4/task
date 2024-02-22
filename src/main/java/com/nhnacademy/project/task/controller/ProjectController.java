@@ -29,7 +29,7 @@ public class ProjectController {
     }
 
     @PutMapping("/{projectId}")
-    public void updateProject(@PathVariable Integer projectId, @RequestBody Project project) {
+    public void updateProject(@RequestBody Project project) {
         service.updateProject(project);
     }
 
