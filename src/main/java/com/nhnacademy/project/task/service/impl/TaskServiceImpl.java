@@ -17,12 +17,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskDto> getAllTasks() {
-        return repository.findAllBy();
+        return repository.getAllBy();
     }
 
     @Override
     public TaskDto getTask(Integer taskId) {
-        return repository.findByTaskId(taskId).orElse(null);
+        return repository.getByTaskId(taskId).orElse(null);
     }
 
     @Override
