@@ -1,14 +1,19 @@
 package com.nhnacademy.project.task.controller;
 
 import com.nhnacademy.project.task.domain.TaskDto;
-import com.nhnacademy.project.task.service.TaskService;
+import com.nhnacademy.project.task.domain.TaskRegisterDto;
+import com.nhnacademy.project.task.domain.TaskResponseDto;
 import com.nhnacademy.project.task.entity.Task;
+import com.nhnacademy.project.task.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/task")
 @RequiredArgsConstructor
 public class TaskController {
@@ -20,19 +25,19 @@ public class TaskController {
     }
 
     @GetMapping("/project/{projectId}")
-    public ResponseEntity<List<Task>> getAllTasksByProjectId(@PathVariable Integer projectId)
-    {
-        return ResponseEntity.ok().body(taskService.getAllByProjectId(projectId));
+    public ResponseEntity<List<Task>> getAllTasksByProjectId(@PathVariable Integer projectId) {
+        List<Task> actual = taskService.getAllByProjectId(projectId);
+        return ResponseEntity.ok().body(actual);
     }
 
     @GetMapping("/{taskId}")
-    public ResponseEntity<TaskDto> getTask(@PathVariable Integer taskId) {
+    public ResponseEntity<TaskResponseDto> getTask(@PathVariable Integer taskId) {
         return ResponseEntity.ok().body(taskService.getTask(taskId));
     }
 
     @PostMapping()
-    public void createTask(@RequestBody Task task) {
-        taskService.createTask(task);
+    public void createTask(@RequestBody TaskRegisterDto taskRegisterDto) {
+        taskService.createTask(taskRegisterDto);
     }
 
     @PutMapping("/{taskId}")
