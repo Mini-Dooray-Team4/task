@@ -19,6 +19,12 @@ public class TaskController {
         return ResponseEntity.ok().body(service.getAllTasks());
     }
 
+    @GetMapping("{projectId}")
+    public ResponseEntity<List<Task>> getAllTasksByProjectId(@PathVariable Integer projectId)
+    {
+        return ResponseEntity.ok().body(service.getAllByProjectId(projectId));
+    }
+
     @GetMapping("/{taskId}")
     public ResponseEntity<TaskDto> getTask(@PathVariable Integer taskId) {
         return ResponseEntity.ok().body(service.getTask(taskId));
