@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getAllByProjectId(Integer projectId) {
-        return repository.getAllByProjectId(projectId);
+        return repository.getAllByProject_ProjectId(projectId);
     }
 
     @Override

@@ -11,5 +11,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<TaskDto> getAllBy();
 
     Optional<TaskDto> getByTaskId(Integer taskId);
-    List<Task> getAllByProjectId(Integer projectId);
+    List<Task> getAllByProject_ProjectId(Integer projectId);
 }

@@ -14,36 +14,36 @@ import java.util.List;
 @RequestMapping("/project")
 @RequiredArgsConstructor
 public class ProjectController {
-    private final ProjectService service;
+    private final ProjectService projectService;
     @GetMapping
     public ResponseEntity<List<ProjectDto>> getAllProjects() {
         return ResponseEntity
             .ok()
-            .body(service.getAllProjects());
+            .body(projectService.getAllProjects());
     }
 
     @GetMapping("/{projectId}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
         return ResponseEntity
                 .ok()
-                .body(service.getProjectByProjectId(projectId));
+                .body(projectService.getProjectByProjectId(projectId));
     }
 
     @PostMapping
     public ResponseEntity<Void> createProject(@RequestBody ProjectRegisterDto projectRegisterDto) {
-        service.createProject(projectRegisterDto);
+        projectService.createProject(projectRegisterDto);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{projectId}")
     public ResponseEntity<Void> updateProject(@RequestBody Project project) {
-        service.updateProject(project);
+        projectService.updateProject(project);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{projectId}")
     public ResponseEntity<Void> deleteProject(@PathVariable Integer projectId) {
-        service.deleteProject(projectId);
+        projectService.deleteProject(projectId);
         return ResponseEntity.ok().build();
     }
 }
