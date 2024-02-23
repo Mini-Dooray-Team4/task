@@ -1,8 +1,10 @@
 package com.nhnacademy.project.task.entity;
 
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Entity
@@ -18,9 +20,11 @@ public class ProjectMember {
 
     @MapsId("projectId")
     @ManyToOne
+    @NotBlank
     @JoinColumn(name = "project_id")
     private Project project;
 
+    @Length(min = 3, max = 20)
     @Column(name = "user_id")
     String userId;
 

@@ -1,12 +1,15 @@
 package com.nhnacademy.project.task.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -23,19 +26,24 @@ public class Comment {
     private Integer commentId;
 
     @Column(name = "user_id")
+    @NotBlank
     private String userId;
 
     @ManyToOne
+    @NotBlank
     @JoinColumn(name = "project_id")
     private Project project;
 
     @ManyToOne
+    @NotBlank
     @JoinColumn(name = "task_id")
     private Task task;
 
+    @Length(min = 1, max = 200)
     private String content;
 
-    @Column(name = "crate_at")
+    @NotBlank
+    @Column(name = "create_at")
     private LocalDateTime createAt;
 
 }
