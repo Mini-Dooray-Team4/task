@@ -29,8 +29,8 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createProject(@RequestBody Project project) {
-        service.createProject(project);
+    public ResponseEntity<Void> createProject(@RequestBody ProjectDto projectDto) {
+        service.createProject(projectDto);
         return ResponseEntity.ok().build();
     }
 

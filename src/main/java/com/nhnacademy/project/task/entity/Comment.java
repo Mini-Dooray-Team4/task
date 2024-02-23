@@ -34,7 +34,8 @@ public class Comment {
     private Task task;
 
     private String content;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+
+    @Column(name = "crate_at")
     private LocalDateTime createAt;
 
 }

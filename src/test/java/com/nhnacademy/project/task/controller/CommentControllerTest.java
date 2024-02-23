@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -37,6 +38,9 @@ class CommentControllerTest {
 
     @MockBean
     CommentService commentService;
+
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Autowired
     MockMvc mockMvc;
@@ -67,13 +71,9 @@ class CommentControllerTest {
 
     @Test
     void createComment() throws Exception {
-        Project project = new Project("3", "project", "진행중");
-        Task task = new Task(project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
+        Project project = new Project(1,"3", "project", "진행중");
+        Task task = new Task(1,project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
         Comment comment = new Comment(10, "userId", project, task, "content", LocalDateTime.now());
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-
 
         mockMvc.perform(
                         post("/comment")
@@ -87,12 +87,10 @@ class CommentControllerTest {
 
     @Test
     void updateComment() throws Exception {
-        Project project = new Project("3", "project", "진행중");
-        Task task = new Task(project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
+        Project project = new Project(1,"3", "project", "진행중");
+        Task task = new Task(1,project, "aa", "taskTitle", "taskContent", LocalDateTime.now());
         Comment comment = new Comment(10, "userId", project, task, "updateComment", LocalDateTime.now());
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
         String updatedProjectJson = objectMapper.writeValueAsString(comment);
 
         mockMvc.perform(

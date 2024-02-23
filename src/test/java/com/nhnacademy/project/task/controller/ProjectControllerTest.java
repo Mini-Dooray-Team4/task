@@ -56,8 +56,7 @@ class ProjectControllerTest {
 
     @Test
     void createProject() throws Exception {
-
-        Project project = new Project("3", "project", "진행중");
+        Project project = new Project(1,"3", "project", "진행중");
         ObjectMapper objectMapper = new ObjectMapper();
 
         mockMvc.perform(
@@ -69,7 +68,7 @@ class ProjectControllerTest {
 
     @Test
     void updateProject() throws Exception {
-        Project updatedProject = new Project("1", "Updated testProject", "Updated test상태");
+        Project updatedProject = new Project(1, "1", "Updated testProject", "Updated test상태");
         ObjectMapper objectMapper = new ObjectMapper();
         String updatedProjectJson = objectMapper.writeValueAsString(updatedProject);
 

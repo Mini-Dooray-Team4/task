@@ -26,9 +26,4 @@ public class Project {
     @Column(name = "project_state")
     private String projectState;
 
-    public Project(String userId, String projectName, String projectState) {
-        this.userId = userId;
-        this.projectName = projectName;
-        this.projectState = projectState;
-    }
 }
