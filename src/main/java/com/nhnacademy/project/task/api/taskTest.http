@@ -1,0 +1,20 @@
+### 조회
+GET http://localhost:8888/task
+accept: application/json
+
+
+### 등록
+POST http://localhost:8888/task
+Content-Type: application/json
+
+{
+  "taskTitle": "task0",
+  "taskContent": "task0-content",
+  "userId": "gahyoung",
+  "createAt": "2024-02-23 15:45:18",
+  "project": {
+    "userId": "gahyoung",
+    "projectName": "testProject",
+    "projectState": "진행중"
+  }
+}
