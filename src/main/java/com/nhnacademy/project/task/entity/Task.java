@@ -44,6 +44,7 @@ public class Task {
     private String taskContent;
 
     @Column(name = "create_at")
+    @NotBlank
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
 

@@ -26,16 +26,15 @@ public class Comment {
     private Integer commentId;
 
     @Column(name = "user_id")
+    @Length(min = 3, max = 20)
     @NotBlank
     private String userId;
 
     @ManyToOne
-    @NotBlank
     @JoinColumn(name = "project_id")
     private Project project;
 
     @ManyToOne
-    @NotBlank
     @JoinColumn(name = "task_id")
     private Task task;
 

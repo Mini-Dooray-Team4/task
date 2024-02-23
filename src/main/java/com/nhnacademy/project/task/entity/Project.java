@@ -30,7 +30,6 @@ public class Project {
     private String projectName;
 
     @NotBlank
-    @NotBlank
     @Column(name = "project_state")
     private String projectState;
 
