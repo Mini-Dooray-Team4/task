@@ -1,0 +1,9 @@
+POST http://localhost:8888/project
+Content-Type: application/json
+
+{
+  "userId": "admin",
+  "projectName": "Mini-Drooay 4팀"
+}
+
+###

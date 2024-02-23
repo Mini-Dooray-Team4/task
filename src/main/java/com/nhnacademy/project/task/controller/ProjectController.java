@@ -1,10 +1,12 @@
 package com.nhnacademy.project.task.controller;
 
 
+import com.nhnacademy.project.task.domain.ProjectDto;
+import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -12,30 +14,36 @@ import java.util.List;
 @RequestMapping("/project")
 @RequiredArgsConstructor
 public class ProjectController {
-    private final ProjectService service;
+    private final ProjectService projectService;
     @GetMapping
-    public List<Project> getAllProjects()
-    {
-        return service.getAllProjects();
+    public ResponseEntity<List<ProjectDto>> getAllProjects() {
+        return ResponseEntity
+            .ok()
+            .body(projectService.getAllProjects());
     }
 
     @GetMapping("/{projectId}")
-    public Project getProject(@PathVariable Integer projectId) {
-        return service.getProject(projectId);
+    public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
+        return ResponseEntity
+                .ok()
+                .body(projectService.getProjectByProjectId(projectId));
     }
 
     @PostMapping
-    public void createProject(@RequestBody Project project) {
-        service.createProject(project);
+    public ResponseEntity<Void> createProject(@RequestBody ProjectRegisterDto projectRegisterDto) {
+        projectService.createProject(projectRegisterDto);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{projectId}")
-    public void updateProject(@RequestBody Project project) {
-        service.updateProject(project);
+    public ResponseEntity<Void> updateProject(@RequestBody Project project) {
+        projectService.updateProject(project);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{projectId}")
-    public void deleteProject(@PathVariable Integer projectId) {
-        service.deleteProject(projectId);
+    public ResponseEntity<Void> deleteProject(@PathVariable Integer projectId) {
+        projectService.deleteProject(projectId);
+        return ResponseEntity.ok().build();
     }
 }

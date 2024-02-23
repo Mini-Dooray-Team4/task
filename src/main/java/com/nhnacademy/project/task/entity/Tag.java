@@ -6,14 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tags")
+@Table(name = "Tags")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,7 @@ public class Tag {
     private Integer tagId;
 
     @Column(name = "tag_name")
+    @Length(min = 1, max = 20)
     private String tagName;
 
     @ManyToOne

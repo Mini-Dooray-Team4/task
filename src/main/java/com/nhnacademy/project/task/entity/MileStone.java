@@ -4,30 +4,37 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "milestone")
+@Table(name = "Milestone")
 public class MileStone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "milestone_id")
     private Integer mileStoneId;
 
+    @NotBlank
+    @Length(min = 1, max = 10)
     @Column(name = "milestone_name")
     private String mileStoneName;
 
+    @NotBlank
     @Column(name = "start_date")
-    private LocalDate startDate;
+    private LocalDateTime startDate;
 
+    @NotBlank
     @Column(name = "end_date")
-    private LocalDate endDate;
+    private LocalDateTime endDate;
 
     @ManyToOne
     @JoinColumn(name = "project_id")
