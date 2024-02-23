@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "project_members")
+@Table(name = "Project_members")
 public class ProjectMember {
 
     @EmbeddedId

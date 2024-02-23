@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "task_milestone")
+@Table(name = "Task_milestone")
 public class TaskMileStone {
     @EmbeddedId
     private Pk pk;

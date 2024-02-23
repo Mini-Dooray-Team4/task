@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "milestone")
+@Table(name = "Milestone")
 public class MileStone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

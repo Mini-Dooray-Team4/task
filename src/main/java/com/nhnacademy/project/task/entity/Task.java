@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tasks")
+@Table(name = "Tasks")
 public class Task {
 
     @Id
@@ -38,4 +38,6 @@ public class Task {
     @Column(name = "create_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
+
+    
 }

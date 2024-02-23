@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tags")
+@Table(name = "Tags")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
