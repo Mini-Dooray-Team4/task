@@ -20,7 +20,7 @@ public class TaskController {
     }
 
     @GetMapping("{projectId}")
-    public ResponseEntity<List<Task>> getAllTasksByProjectId(@PathVariable Integer projectId)
+    public ResponseEntity<List<TaskDto>> getAllTasksByProjectId(@PathVariable Integer projectId)
     {
         return ResponseEntity.ok().body(service.getAllByProjectId(projectId));
     }

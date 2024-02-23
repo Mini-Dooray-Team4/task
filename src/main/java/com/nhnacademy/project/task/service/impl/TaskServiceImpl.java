@@ -21,7 +21,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllByProjectId(Integer projectId) {
+    public List<TaskDto> getAllByProjectId(Integer projectId) {
         return repository.getAllByProjectId(projectId);
     }
 

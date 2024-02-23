@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface TaskService {
     List<TaskDto> getAllTasks();
-    List<Task> getAllByProjectId(Integer projectId);
+    List<TaskDto> getAllByProjectId(Integer projectId);
     TaskDto getTask(Integer taskId);
     void createTask(Task task);
     void deleteTask(Integer taskId);
