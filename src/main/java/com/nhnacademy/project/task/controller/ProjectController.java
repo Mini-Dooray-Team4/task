@@ -2,6 +2,7 @@ package com.nhnacademy.project.task.controller;
 
 
 import com.nhnacademy.project.task.domain.ProjectDto;
+import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +30,8 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createProject(@RequestBody ProjectDto projectDto) {
-        service.createProject(projectDto);
+    public ResponseEntity<Void> createProject(@RequestBody ProjectRegisterDto projectRegisterDto) {
+        service.createProject(projectRegisterDto);
         return ResponseEntity.ok().build();
     }
 

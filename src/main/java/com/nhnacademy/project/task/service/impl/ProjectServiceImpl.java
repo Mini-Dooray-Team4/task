@@ -1,16 +1,19 @@
 package com.nhnacademy.project.task.service.impl;
 
 import com.nhnacademy.project.task.domain.ProjectDto;
+import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.repository.ProjectRepository;
 import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
@@ -18,7 +21,6 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<ProjectDto> getAllProjects() {
-
         return repository.getAllBy();
     }
 
@@ -28,10 +30,11 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void createProject(ProjectDto projectDto) {
+    public void createProject(ProjectRegisterDto projectRegisterDto) {
         Project project = new Project();
-        BeanUtils.copyProperties(projectDto, project);
+        BeanUtils.copyProperties(projectRegisterDto, project);
         project.setProjectId(null);
+        project.setProjectState("활동");
         repository.save(project);
     }
 
