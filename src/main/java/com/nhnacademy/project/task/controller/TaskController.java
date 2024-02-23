@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/task")
 @RequiredArgsConstructor
 public class TaskController {
     private final TaskService taskService;
@@ -26,7 +26,7 @@ public class TaskController {
         return ResponseEntity.ok().body(taskService.getAllByProjectId(projectId));
     }
 
-    @GetMapping("/project/{projectId}/{taskId}")
+    @GetMapping("/{taskId}")
     public ResponseEntity<TaskDto> getTask(@PathVariable Integer taskId) {
         return ResponseEntity.ok().body(taskService.getTask(taskId));
     }

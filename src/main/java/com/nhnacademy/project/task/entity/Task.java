@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -30,13 +31,13 @@ public class Task {
     private Project project;
 
     @Column(name = "user_id")
-    @NotBlank
+    @NotNull
     @Length(min = 3, max = 20)
     private String userId;
 
     @Column(name = "task_title")
     @Length(min = 3, max = 20)
-    @NotBlank
+    @NotNull
     private String taskTitle;
 
     @Column(name = "task_content")
@@ -44,7 +45,7 @@ public class Task {
     private String taskContent;
 
     @Column(name = "create_at")
-    @NotBlank
+    @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
 

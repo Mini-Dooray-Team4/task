@@ -39,7 +39,6 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         BeanUtils.copyProperties(registerDto, task);
 
-        task.setProject(project);
         task.setCreateAt(LocalDateTime.now());
 
         if(!repository.existsById(task.getTaskId()))
