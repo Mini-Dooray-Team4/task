@@ -1,7 +1,7 @@
 package com.nhnacademy.project.task.controller;
 
 import com.nhnacademy.project.task.domain.CommentDto;
-import com.nhnacademy.project.task.entity.Comment;
+import com.nhnacademy.project.task.domain.CommentRegisterDto;
 import com.nhnacademy.project.task.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,21 +32,28 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createComment(@RequestBody Comment comment) {
-        commentService.createComment(comment);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> createComment(@RequestBody CommentRegisterDto commentRegisterDto) {
+        commentService.createComment(commentRegisterDto);
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<Void> updateComment(@RequestBody Comment comment) {
-        commentService.updateComment(comment);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> updateComment(@RequestBody CommentRegisterDto commentRegisterDto,
+                                              @PathVariable("commentId") Integer commentId) {
+        commentService.updateComment(commentRegisterDto, commentId);
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(@PathVariable Integer commentId) {
         commentService.deleteComment(commentId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
 }
