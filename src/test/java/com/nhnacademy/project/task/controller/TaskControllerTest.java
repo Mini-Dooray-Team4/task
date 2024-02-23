@@ -39,7 +39,6 @@ class TaskControllerTest {
     @MockBean
     private TaskRepository repository;
 
-
     @Test
     void getAllTasks() throws Exception {
         given(repository.getAllBy()).willReturn(List.of(new TaskDto(1, "taskTitle", "jjunho50")));
