@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.repository;
 
+import com.nhnacademy.project.task.domain.TaskRegisterDto;
 import com.nhnacademy.project.task.entity.Task;
 import com.nhnacademy.project.task.domain.TaskDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +16,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             "from Task t " +
             "where t.taskId=?1")
     Optional<TaskDto> getByTaskId(Integer taskId);
-    List<Task> getAllByProject_ProjectId(Integer projectId);
+    List<TaskDto> getAllByProject_ProjectId(Integer projectId);
 }

@@ -1,12 +1,16 @@
 package com.nhnacademy.project.task.service.impl;
 
 import com.nhnacademy.project.task.domain.TaskDto;
+import com.nhnacademy.project.task.domain.TaskRegisterDto;
+import com.nhnacademy.project.task.entity.Project;
 import com.nhnacademy.project.task.repository.TaskRepository;
 import com.nhnacademy.project.task.service.TaskService;
 import com.nhnacademy.project.task.entity.Task;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +25,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllByProjectId(Integer projectId) {
+    public List<TaskDto> getAllByProjectId(Integer projectId) {
         return repository.getAllByProject_ProjectId(projectId);
     }
 
@@ -31,19 +35,31 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void createTask(Task task) {
-        repository.save(task);
+    public void createTask(TaskRegisterDto registerDto) {
+        Task task = new Task();
+        BeanUtils.copyProperties(registerDto, task);
+
+        task.setProject(project);
+        task.setCreateAt(LocalDateTime.now());
+
+        if(!repository.existsById(task.getTaskId()))
+            repository.save(task);
     }
 
     @Override
     public void deleteTask(Integer taskId) {
-        repository.deleteById(taskId);
+        if(repository.existsById(taskId))
+            repository.deleteById(taskId);
     }
 
     @Override
-    public void updateTask(Task task) {
-        if (repository.existsById(task.getTaskId())) {
+    public void updateTask(TaskRegisterDto registerDto) {
+        Task task = new Task();
+        BeanUtils.copyProperties(registerDto, task);
+
+        task.setCreateAt(LocalDateTime.now());
+
+        if(repository.existsById(task.getTaskId()))
             repository.save(task);
-        }
     }
 }

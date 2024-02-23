@@ -40,7 +40,6 @@ public class Task {
     private String taskTitle;
 
     @Column(name = "task_content")
-    @NotBlank
     @Length(min = 1, max = 500)
     private String taskContent;
 
