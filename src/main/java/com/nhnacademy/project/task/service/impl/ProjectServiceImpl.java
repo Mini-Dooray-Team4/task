@@ -39,12 +39,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void createProject(ProjectRegisterDto projectRegisterDto) {
+    public Project createProject(ProjectRegisterDto projectRegisterDto) {
         Project project = new Project();
         BeanUtils.copyProperties(projectRegisterDto, project);
         project.setProjectId(null);
         project.setProjectState("활동");
-        repository.save(project);
+        return repository.save(project);
     }
 
     @Override

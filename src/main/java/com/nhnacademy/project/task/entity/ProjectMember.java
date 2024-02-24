@@ -12,7 +12,8 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Project_members")
+@ToString
+@Table(name = "ProjectMembers")
 public class ProjectMember {
 
     @EmbeddedId
@@ -20,7 +21,6 @@ public class ProjectMember {
 
     @MapsId("projectId")
     @ManyToOne
-    @NotBlank
     @JoinColumn(name = "project_id")
     private Project project;
 
