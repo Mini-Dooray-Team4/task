@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
+    @Query(value = "select new com.nhnacademy.project.task.domain.TaskResponseDto(t.taskId,p.projectId,t.userId ,t.taskTitle, t.taskContent,t.createAt) "
+            +
+            "from Task t " +
+            "inner join fetch Project p on t.project = p " )
     List<TaskDto> getAllBy();
 
     @Query(value = "select new com.nhnacademy.project.task.domain.TaskResponseDto(t.taskId,p.projectId,t.userId ,t.taskTitle, t.taskContent,t.createAt) "
@@ -19,5 +23,9 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
             "where t.taskId=?1")
     Optional<TaskResponseDto> getByTaskId(Integer taskId);
 
+    @Query(value = "select t "+
+            "from Task t " +
+            "inner join fetch Project p on t.project = p " +
+            "where p.projectId=?1")
     List<Task> getAllByProject_ProjectId(Integer projectId);
 }
