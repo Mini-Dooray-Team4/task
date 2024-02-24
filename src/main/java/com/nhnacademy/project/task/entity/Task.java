@@ -44,6 +44,10 @@ public class Task {
     @Length(max = 500)
     private String taskContent;
 
+    @OneToOne
+    @JoinColumn(name = "milestone_id")
+    private MileStone mileStone;
+
     @Column(name = "create_at")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
