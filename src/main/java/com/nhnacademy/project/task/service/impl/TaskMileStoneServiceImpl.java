@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.service.impl;
 
+import com.nhnacademy.project.task.entity.Task;
 import com.nhnacademy.project.task.entity.TaskMileStone;
 import com.nhnacademy.project.task.repository.TaskMileStoneRepository;
 import com.nhnacademy.project.task.service.TaskMileStoneService;
@@ -21,8 +22,8 @@ public class TaskMileStoneServiceImpl implements TaskMileStoneService {
     }
 
     @Override
-    public TaskMileStone getTaskMileStone(TaskMileStone.Pk pk) {
-        Optional<TaskMileStone> taskMileStone = repository.findById(pk);
+    public TaskMileStone getTaskMileStone(Task task) {
+        Optional<TaskMileStone> taskMileStone = repository.findById(task);
         return taskMileStone.orElse(null);
     }
 
@@ -32,8 +33,8 @@ public class TaskMileStoneServiceImpl implements TaskMileStoneService {
     }
 
     @Override
-    public void deleteTaskMileStone(TaskMileStone.Pk pk) {
-        repository.deleteById(pk);
+    public void deleteTaskMileStone(Task task) {
+        repository.deleteById(task);
     }
 
     @Override

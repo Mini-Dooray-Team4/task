@@ -21,4 +21,6 @@ public class TaskMileStone {
     @ManyToOne
     @JoinColumn(name = "milestone_id")
     private MileStone mileStone;
+
+
 }
