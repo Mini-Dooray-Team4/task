@@ -26,7 +26,6 @@ public class Comment {
     private Integer commentId;
 
     @Column(name = "user_id")
-    @Length(min = 3, max = 20)
     @NotBlank
     private String userId;
 

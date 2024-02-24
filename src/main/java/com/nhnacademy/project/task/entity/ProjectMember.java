@@ -24,7 +24,6 @@ public class ProjectMember {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @Length(min = 3, max = 20)
     @Column(name = "user_id")
     String userId;
 

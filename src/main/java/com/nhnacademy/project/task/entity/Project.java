@@ -21,12 +21,10 @@ public class Project {
     private Integer projectId;
 
     @NotBlank
-    @Length(min = 3, max = 20)
     @Column(name = "user_id")
     private String userId;
 
     @NotBlank
-    @Length(min = 3, max = 20)
     @Column(name = "project_name")
     private String projectName;
 
