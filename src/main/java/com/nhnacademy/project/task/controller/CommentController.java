@@ -8,27 +8,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("project/{projectId}/task/{taskId}/comment")
 @RequiredArgsConstructor
 public class CommentController {
 
     private final CommentService commentService;
 
     @GetMapping
-    public ResponseEntity<List<CommentDto>> getAllComments() {
+    public ResponseEntity<List<CommentDto>> getAllComments(@PathVariable("projectId") Integer projectId,
+                                                           @PathVariable("taskId") Integer taskId) {
         return ResponseEntity
                 .ok()
-                .body(commentService.getAllComments());
+                .body(commentService.getAllComments(taskId, projectId));
     }
 
     @GetMapping("/{commentId}")
-    public ResponseEntity<CommentDto> getComment(@PathVariable Integer commentId) {
+    public ResponseEntity<Optional<CommentDto>> getComment(@PathVariable("commentId") Integer commentId,
+                                                           @PathVariable("projectId") Integer projectId,
+                                                           @PathVariable("taskId") Integer taskId) {
 
         return ResponseEntity
                 .ok()
-                .body(commentService.getComment(commentId));
+                .body(commentService.getComment(commentId, taskId, projectId));
     }
 
     @PostMapping
