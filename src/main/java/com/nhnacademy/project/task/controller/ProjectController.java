@@ -3,11 +3,12 @@ package com.nhnacademy.project.task.controller;
 
 import com.nhnacademy.project.task.domain.ProjectDto;
 import com.nhnacademy.project.task.domain.ProjectRegisterDto;
-import com.nhnacademy.project.task.service.ProjectService;
 import com.nhnacademy.project.task.entity.Project;
+import com.nhnacademy.project.task.service.ProjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -15,13 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProjectController {
     private final ProjectService projectService;
+
     @GetMapping
     public ResponseEntity<List<ProjectDto>> getAllProjects() {
         return ResponseEntity
-            .ok()
-            .body(projectService.getAllProjects());
+                .ok()
+                .body(projectService.getAllProjects());
     }
-
     @GetMapping("/{projectId}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
         return ResponseEntity

@@ -41,13 +41,11 @@ public class Task {
     private String taskTitle;
 
     @Column(name = "task_content")
-    @Length(min = 1, max = 500)
+    @Length(max = 500)
     private String taskContent;
 
     @Column(name = "create_at")
-    @NotNull
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createAt;
 
-    
 }
