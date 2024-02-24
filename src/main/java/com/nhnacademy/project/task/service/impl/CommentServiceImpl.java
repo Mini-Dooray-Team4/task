@@ -2,6 +2,8 @@ package com.nhnacademy.project.task.service.impl;
 
 import com.nhnacademy.project.task.domain.CommentDto;
 import com.nhnacademy.project.task.domain.CommentRegisterDto;
+import com.nhnacademy.project.task.entity.Project;
+import com.nhnacademy.project.task.entity.Task;
 import com.nhnacademy.project.task.repository.CommentRepository;
 import com.nhnacademy.project.task.service.CommentService;
 import com.nhnacademy.project.task.entity.Comment;
@@ -34,6 +36,15 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = new Comment();
         BeanUtils.copyProperties(commentRegisterDto, comment);
         comment.setCreateAt(LocalDateTime.now());
+
+        Project project = new Project();
+        project.setProjectId(commentRegisterDto.getProjectId());
+
+        Task task = new Task();
+        task.setTaskId(commentRegisterDto.getTaskId());
+
+        comment.setProject(project);
+        comment.setTask(task);
 
         repository.save(comment);
     }
