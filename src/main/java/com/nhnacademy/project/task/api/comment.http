@@ -1,0 +1,25 @@
+### 조회
+GET http://localhost:8888/comment
+accept: application/json
+
+
+### 등록
+POST http://localhost:8888/comment
+Content-Type: application/json
+
+{
+  "content": "놀쟈33",
+  "userId": "gahyoung"
+}
+
+### 수정
+PUT http://localhost:8888/comment/2
+Content-Type: application/json
+
+{
+  "userId": "gahyoung",
+  "content": "배고파"
+}
+
+### 삭제
+DELETE http://localhost:8888/comment/2
