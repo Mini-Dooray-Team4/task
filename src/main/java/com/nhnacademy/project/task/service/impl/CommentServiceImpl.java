@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,13 +19,13 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository repository;
 
     @Override
-    public List<CommentDto> getAllComments() {
-        return repository.getAllBy();
+    public List<CommentDto> getAllComments(Integer taskId, Integer projectId) {
+        return repository.getAllByTask_TaskIdAndProject_ProjectId(taskId, projectId);
     }
 
     @Override
-    public CommentDto getComment(Integer commentId) {
-        return repository.getByCommentId(commentId);
+    public Optional<CommentDto> getComment(Integer commentId, Integer taskId, Integer projectId) {
+        return repository.getByCommentIdAndTask_TaskIdAndProject_ProjectId(commentId, taskId, projectId);
     }
 
     @Override
