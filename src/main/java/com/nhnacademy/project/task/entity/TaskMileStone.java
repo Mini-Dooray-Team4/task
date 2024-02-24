@@ -12,25 +12,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Table(name = "Task_milestone")
 public class TaskMileStone {
-    @EmbeddedId
-    private Pk pk;
 
-    @MapsId("tagId")
+    @Id
     @ManyToOne
-    @JoinColumn(name = "tag_id")
-    private Tag tag;
+    @JoinColumn(name = "task_id")
+    private Task task;
 
-    @MapsId("mileStoneId")
     @ManyToOne
     @JoinColumn(name = "milestone_id")
     private MileStone mileStone;
-
-    @Embeddable
-    @EqualsAndHashCode
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Pk implements Serializable{
-        private Integer tagId;
-        private Integer mileStoneId;
-    }
 }
