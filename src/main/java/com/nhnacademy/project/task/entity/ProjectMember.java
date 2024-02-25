@@ -19,6 +19,7 @@ public class ProjectMember {
     @EmbeddedId
     private Pk pk;
 
+
     @MapsId("projectId")
     @ManyToOne
     @JoinColumn(name = "project_id")
