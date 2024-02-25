@@ -27,6 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Transactional(readOnly = true)
     public List<ProjectDto> getAllProjects(String userId) {
 
+
         return repository.getAllBy(userId);
     }
 
