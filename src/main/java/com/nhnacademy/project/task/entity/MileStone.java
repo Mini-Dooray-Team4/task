@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -28,11 +29,11 @@ public class MileStone {
     @Column(name = "milestone_name")
     private String mileStoneName;
 
-    @NotBlank
+    @NotNull
     @Column(name = "start_date")
     private LocalDateTime startDate;
 
-    @NotBlank
+    @NotNull
     @Column(name = "end_date")
     private LocalDateTime endDate;
 
