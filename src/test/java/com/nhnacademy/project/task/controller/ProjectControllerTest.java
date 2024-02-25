@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -34,7 +35,7 @@ class ProjectControllerTest {
     @Test
     void projectRepository() throws Exception {
 
-        given(projectService.getAllProjects())
+        given(projectService.getAllProjects(anyString()))
                 .willReturn(List.of(new ProjectDto(12, "test1")));
 
         mockMvc.perform(get("/project"))

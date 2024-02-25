@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProjectService {
-    List<ProjectDto> getAllProjects();
+    List<ProjectDto> getAllProjects(String userId);
     ProjectDto getProjectByProjectId(Integer projectId);
     Project createProject(ProjectRegisterDto projectRegisterDto);
     void deleteProject(Integer projectId);

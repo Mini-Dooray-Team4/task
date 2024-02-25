@@ -25,10 +25,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProjectDto> getAllProjects() {
-        log.info("{}", "getAllProjects");
+    public List<ProjectDto> getAllProjects(String userId) {
 
-        return repository.getAllBy();
+        return repository.getAllBy(userId);
     }
 
     @Override

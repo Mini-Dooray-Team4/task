@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -25,14 +26,17 @@ public class ProjectController {
     private final ProjectMemberService projectMemberService;
 
     @GetMapping
-    public ResponseEntity<List<ProjectDto>> getAllProjects() {
+    public ResponseEntity<List<ProjectDto>> getAllProjects(HttpServletRequest request) {
+        String userId = request.getHeader("userId");
         return ResponseEntity
                 .ok()
-                .body(projectService.getAllProjects());
+                .body(projectService.getAllProjects(userId));
     }
 
     @GetMapping("/{projectId}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
+
+
         return ResponseEntity
                 .ok()
                 .body(projectService.getProjectByProjectId(projectId));
