@@ -12,7 +12,11 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
 
 
-    List<ProjectDto> getAllBy();
+    @Query("select new com.nhnacademy.project.task.domain.ProjectDto(p.projectId,p.projectName) " +
+            "from Project p " +
+            "inner join ProjectMember pm on p.projectId = pm.project.projectId " +
+            "where pm.pk.userId=?1")
+    List<ProjectDto> getAllBy(String userId);
     ProjectDto getByProjectId(Integer projectId);
 
     @Modifying
