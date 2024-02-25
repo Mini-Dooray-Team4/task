@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ProjectService {
     List<ProjectDto> getAllProjects();
     ProjectDto getProjectByProjectId(Integer projectId);
-    Project createProject(ProjectRegisterDto projectRegisterDto);
+    void createProject(ProjectRegisterDto projectRegisterDto);
     void deleteProject(Integer projectId);
 
     void updateProject(ProjectModifyDto projectModifyDto);

@@ -1,24 +1,18 @@
 package com.nhnacademy.project.task.service.impl;
 
-import com.nhnacademy.project.task.domain.ProjectMemberRegisterDto;
-import com.nhnacademy.project.task.entity.Project;
 import com.nhnacademy.project.task.repository.ProjectMemberRepository;
-import com.nhnacademy.project.task.repository.ProjectRepository;
 import com.nhnacademy.project.task.service.ProjectMemberService;
 import com.nhnacademy.project.task.entity.ProjectMember;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class ProjectMemberServiceImpl implements ProjectMemberService {
     private final ProjectMemberRepository repository;
-    private final ProjectRepository projectRepository;
 
     @Override
     public List<ProjectMember> getAllProjectMembers() {
@@ -38,7 +32,7 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
             projectMember.setProject(project);
 
-            ProjectMember.Pk pk = new ProjectMember.Pk(projectMemberRegisterDto.getProjectId(),userId);
+            ProjectMember.Pk pk = new ProjectMember.Pk(projectMemberRegisterDto.getProjectId(), userId);
 
             projectMember.setPk(pk);
             repository.save(projectMember);
