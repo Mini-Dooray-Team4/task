@@ -1,6 +1,7 @@
 package com.nhnacademy.project.task.service.impl;
 
 import com.nhnacademy.project.task.domain.ProjectDto;
+import com.nhnacademy.project.task.domain.ProjectModifyDto;
 import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.repository.ProjectRepository;
 import com.nhnacademy.project.task.service.ProjectService;
@@ -24,10 +25,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ProjectDto> getAllProjects() {
-        log.info("{}", "getAllProjects");
+    public List<ProjectDto> getAllProjects(String userId) {
 
-        return repository.getAllBy();
+
+        return repository.getAllBy(userId);
     }
 
     @Override
@@ -53,9 +54,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateProject(Project project) {
-        if (repository.existsById(project.getProjectId())) {
-            repository.save(project);
+    public void updateProject(ProjectModifyDto projectModifyDto) {
+        if (repository.existsById(projectModifyDto.getProjectId())) {
+        log.info("{}",projectModifyDto);
+            repository.updateByProjectId(projectModifyDto.getProjectName(), projectModifyDto.getProjectId());
         }
     }
 }

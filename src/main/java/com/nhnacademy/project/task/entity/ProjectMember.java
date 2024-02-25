@@ -24,8 +24,7 @@ public class ProjectMember {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @Column(name = "user_id")
-    String userId;
+
 
     @Embeddable
     @EqualsAndHashCode
@@ -33,5 +32,7 @@ public class ProjectMember {
     @AllArgsConstructor
     public static class Pk implements Serializable{
         private Integer projectId;
+        @Column(name = "user_id")
+        String userId;
     }
 }

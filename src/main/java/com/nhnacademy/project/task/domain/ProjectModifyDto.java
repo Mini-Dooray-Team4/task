@@ -3,11 +3,9 @@ package com.nhnacademy.project.task.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
-public class ProjectMemberRegisterDto {
+public class ProjectModifyDto {
     private Integer projectId;
-    private List<String> userId;
+    private String projectName;
 }

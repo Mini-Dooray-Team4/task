@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.service;
 
+import com.nhnacademy.project.task.domain.TagRegisterDto;
 import com.nhnacademy.project.task.domain.TaskRegisterDto;
 import com.nhnacademy.project.task.domain.TaskResponseDto;
 import com.nhnacademy.project.task.entity.Task;
@@ -15,6 +16,8 @@ public interface TaskService {
     TaskResponseDto getTask(Integer taskId);
 
     void createTask(TaskRegisterDto taskRegisterDto);
+
+    void createTag(TagRegisterDto tagRegisterDto);
 
     void deleteTask(Integer taskId);
 

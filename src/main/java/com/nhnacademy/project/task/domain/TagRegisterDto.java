@@ -2,12 +2,12 @@ package com.nhnacademy.project.task.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class ProjectMemberRegisterDto {
+@NoArgsConstructor
+public class TagRegisterDto {
     private Integer projectId;
-    private List<String> userId;
+    private String tagName;
 }

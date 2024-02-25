@@ -33,16 +33,17 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     @Override
     public void createProjectMember(ProjectMemberRegisterDto projectMemberRegisterDto) {
         Project project = projectRepository.findById(projectMemberRegisterDto.getProjectId()).orElse(null);
-        ProjectMember projectMember = new ProjectMember();
+        for (String userId : projectMemberRegisterDto.getUserId()) {
+            ProjectMember projectMember = new ProjectMember();
 
-        projectMember.setProject(project);
-        projectMember.setUserId(projectMemberRegisterDto.getUserId());
+            projectMember.setProject(project);
 
-        ProjectMember.Pk pk = new ProjectMember.Pk(projectMemberRegisterDto.getProjectId());
+            ProjectMember.Pk pk = new ProjectMember.Pk(projectMemberRegisterDto.getProjectId(),userId);
 
-        projectMember.setPk(pk);
-        log.info(">>>>>>>>>{}",projectMember);
-        repository.save(projectMember);
+            projectMember.setPk(pk);
+            repository.save(projectMember);
+        }
+
     }
 
     @Override
