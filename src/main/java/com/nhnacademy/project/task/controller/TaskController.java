@@ -1,5 +1,6 @@
 package com.nhnacademy.project.task.controller;
 
+import com.nhnacademy.project.task.domain.TagRegisterDto;
 import com.nhnacademy.project.task.domain.TaskDto;
 import com.nhnacademy.project.task.domain.TaskRegisterDto;
 import com.nhnacademy.project.task.domain.TaskResponseDto;
@@ -38,6 +39,10 @@ public class TaskController {
     @PostMapping()
     public void createTask(@RequestBody TaskRegisterDto taskRegisterDto) {
         taskService.createTask(taskRegisterDto);
+    }
+    @PostMapping("/tag/register")
+    public void createTag(@RequestBody TagRegisterDto tagRegisterDto) {
+        taskService.createTag(tagRegisterDto);
     }
 
     @PutMapping("/{taskId}")

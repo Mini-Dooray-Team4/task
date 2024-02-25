@@ -1,6 +1,7 @@
 package com.nhnacademy.project.task.service.impl;
 
 import com.nhnacademy.project.task.domain.ProjectDto;
+import com.nhnacademy.project.task.domain.ProjectModifyDto;
 import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.repository.ProjectRepository;
 import com.nhnacademy.project.task.service.ProjectService;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -20,8 +20,10 @@ public class ProjectServiceImpl implements ProjectService {
     private final ProjectRepository repository;
 
     @Override
-    public List<ProjectDto> getAllProjects() {
-        return repository.getAllBy();
+    @Transactional(readOnly = true)
+    public List<ProjectDto> getAllProjects(String userId) {
+
+        return repository.getAllBy(userId);
     }
 
     @Override
@@ -44,9 +46,10 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void updateProject(Project project) {
-        if (repository.existsById(project.getProjectId())) {
-            repository.save(project);
+    public void updateProject(ProjectModifyDto projectModifyDto) {
+        if (repository.existsById(projectModifyDto.getProjectId())) {
+            log.info("{}", projectModifyDto);
+            repository.updateByProjectId(projectModifyDto.getProjectName(), projectModifyDto.getProjectId());
         }
     }
 }
