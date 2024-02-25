@@ -24,7 +24,7 @@ public class MileStone {
     private Integer mileStoneId;
 
     @NotBlank
-    @Length(min = 1)
+    @Length(min = 1, max = 10)
     @Column(name = "milestone_name")
     private String mileStoneName;
 

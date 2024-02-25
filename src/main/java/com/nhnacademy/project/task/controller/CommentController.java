@@ -4,14 +4,12 @@ import com.nhnacademy.project.task.domain.CommentDto;
 import com.nhnacademy.project.task.domain.CommentRegisterDto;
 import com.nhnacademy.project.task.service.CommentService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @RestController
 @RequestMapping("project/{projectId}/task/{taskId}/comment")
 @RequiredArgsConstructor
@@ -39,7 +37,6 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<Void> createComment(@RequestBody CommentRegisterDto commentRegisterDto) {
-        log.info("{}","hih");
         commentService.createComment(commentRegisterDto);
         return ResponseEntity
                 .ok()
