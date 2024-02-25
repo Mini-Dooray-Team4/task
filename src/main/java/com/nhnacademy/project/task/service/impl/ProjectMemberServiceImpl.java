@@ -25,8 +25,19 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
     }
 
     @Override
-    public void createProjectMember(ProjectMember projectMember) {
-        repository.save(projectMember);
+    public void createProjectMember(ProjectMemberRegisterDto projectMemberRegisterDto) {
+        Project project = projectRepository.findById(projectMemberRegisterDto.getProjectId()).orElse(null);
+        for (String userId : projectMemberRegisterDto.getUserId()) {
+            ProjectMember projectMember = new ProjectMember();
+
+            projectMember.setProject(project);
+
+            ProjectMember.Pk pk = new ProjectMember.Pk(projectMemberRegisterDto.getProjectId(), userId);
+
+            projectMember.setPk(pk);
+            repository.save(projectMember);
+        }
+
     }
 
     @Override
