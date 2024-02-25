@@ -32,11 +32,9 @@ public class Task {
 
     @Column(name = "user_id")
     @NotNull
-    @Length(min = 3, max = 20)
     private String userId;
 
     @Column(name = "task_title")
-    @Length(min = 3, max = 20)
     @NotNull
     private String taskTitle;
 
