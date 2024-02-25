@@ -1,8 +1,7 @@
 package com.nhnacademy.project.task.controller;
 
+
 import com.nhnacademy.project.task.domain.ProjectDto;
-import com.nhnacademy.project.task.domain.ProjectMemberRegisterDto;
-import com.nhnacademy.project.task.domain.ProjectModifyDto;
 import com.nhnacademy.project.task.domain.ProjectRegisterDto;
 import com.nhnacademy.project.task.entity.Project;
 import com.nhnacademy.project.task.service.ProjectService;
@@ -24,7 +23,6 @@ public class ProjectController {
                 .ok()
                 .body(projectService.getAllProjects());
     }
-
     @GetMapping("/{projectId}")
     public ResponseEntity<ProjectDto> getProject(@PathVariable Integer projectId) {
         return ResponseEntity
@@ -34,17 +32,13 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Void> createProject(@RequestBody ProjectRegisterDto projectRegisterDto) {
-        Project project = projectService.createProject(projectRegisterDto);
-        ProjectMemberRegisterDto projectMemberRegisterDto = new ProjectMemberRegisterDto(project.getProjectId(),
-                List.of(projectRegisterDto.getUserId()));
-        projectMemberService.createProjectMember(projectMemberRegisterDto);
-
+        projectService.createProject(projectRegisterDto);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{projectId}")
-    public ResponseEntity<Void> updateProject(@RequestBody ProjectModifyDto projectModifyDto) {
-        projectService.updateProject(projectModifyDto);
+    public ResponseEntity<Void> updateProject(@RequestBody Project project) {
+        projectService.updateProject(project);
         return ResponseEntity.ok().build();
     }
 
@@ -53,12 +47,4 @@ public class ProjectController {
         projectService.deleteProject(projectId);
         return ResponseEntity.ok().build();
     }
-
-    @PostMapping("/{projectId}/member/invite")
-    private ResponseEntity<Void> inviteProjectMember(@RequestBody ProjectMemberRegisterDto projectMemberRegisterDto) {
-        projectMemberService.createProjectMember(projectMemberRegisterDto);
-
-        return null;
-    }
-
 }

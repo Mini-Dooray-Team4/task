@@ -24,13 +24,15 @@ public class ProjectMember {
     @JoinColumn(name = "project_id")
     private Project project;
 
+    @Length(min = 3, max = 20)
+    @Column(name = "user_id")
+    String userId;
+
     @Embeddable
     @EqualsAndHashCode
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Pk implements Serializable {
+    public static class Pk implements Serializable{
         private Integer projectId;
-        @Column(name = "user_id")
-        String userId;
     }
 }
