@@ -5,9 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class TaskRegisterDto {
+public class ProjectMemberRegisterDto {
     private Integer projectId;
-    private String taskTitle;
     private String userId;
-    private String taskContent;
 }

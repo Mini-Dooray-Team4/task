@@ -11,12 +11,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
 @Service("taskService")
+@Transactional
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
@@ -27,12 +29,16 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Task> getAllByProjectId(Integer projectId) {
+        log.info("{}", "getAllByProjectId");
         return repository.getAllByProject_ProjectId(projectId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public TaskResponseDto getTask(Integer taskId) {
+        log.info("{}", "getTask");
         return repository.getByTaskId(taskId).orElse(null);
     }
 
@@ -42,7 +48,6 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task();
         BeanUtils.copyProperties(taskRegisterDto, task);
         task.setCreateAt(LocalDateTime.now());
-        task.setTaskContent("");
         Project project = new Project();
         project.setProjectId(taskRegisterDto.getProjectId());
         task.setProject(project);
