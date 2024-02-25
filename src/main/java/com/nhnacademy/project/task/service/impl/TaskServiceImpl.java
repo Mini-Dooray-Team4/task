@@ -1,9 +1,13 @@
 package com.nhnacademy.project.task.service.impl;
 
+import com.nhnacademy.project.task.domain.TagRegisterDto;
 import com.nhnacademy.project.task.domain.TaskDto;
 import com.nhnacademy.project.task.domain.TaskRegisterDto;
 import com.nhnacademy.project.task.domain.TaskResponseDto;
 import com.nhnacademy.project.task.entity.Project;
+import com.nhnacademy.project.task.entity.Tag;
+import com.nhnacademy.project.task.repository.ProjectRepository;
+import com.nhnacademy.project.task.repository.TagRepository;
 import com.nhnacademy.project.task.repository.TaskRepository;
 import com.nhnacademy.project.task.service.TaskService;
 import com.nhnacademy.project.task.entity.Task;
@@ -22,6 +26,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
+    private final ProjectRepository projectRepository;
+    private final TagRepository tagRepository;
 
     @Override
     public List<TaskDto> getAllTasks() {
@@ -52,6 +58,21 @@ public class TaskServiceImpl implements TaskService {
         project.setProjectId(taskRegisterDto.getProjectId());
         task.setProject(project);
         repository.save(task);
+    }
+
+    @Override
+    public void createTag(TagRegisterDto tagRegisterDto) {
+        Tag tag = new Tag();
+        Project project = projectRepository.findById(tagRegisterDto.getProjectId()).orElse(null);
+        tag.setProject(project);
+
+
+        tag.setTagId(null);
+        tag.setTagName(tagRegisterDto.getTagName());
+
+        log.info("{}",tag);
+
+        tagRepository.save(tag);
     }
 
     @Override
